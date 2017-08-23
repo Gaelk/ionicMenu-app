@@ -7,6 +7,9 @@
 <ion-header>
 
   <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
     <ion-title>config</ion-title>
   </ion-navbar>
 
@@ -18,7 +21,7 @@
 <ion-list>
   <ion-item>
     <ion-label floating>Filter</ion-label>
-    <ion-select [(ngMOdel)]="chosenFilter">
+    <ion-select [(ngModel)]="chosenFilter" (ionChange)="persitConfig()">
       <ion-option *ngFor="let item of allowedFilters">{{item}}</ion-option>
     </ion-select>
   </ion-item>

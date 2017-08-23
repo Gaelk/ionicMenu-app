@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ConfigProvider } from "../../providers/config/config";
-import{Storage} from '@ionic/storage';
+//import{Storage} from '@ionic/storage';
 
 /**
  * Generated class for the ConfigPage page.
@@ -17,20 +17,24 @@ import{Storage} from '@ionic/storage';
 })
 export class ConfigPage {
   public chosenFilter;
-  public allowedFilters=[];
+  public allowedFilters = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private config:ConfigProvider, public storage:Storage) {
-this.chosenFilter=config.getFilter();
-this.allowedFilters=config.getAllowedFilters();
+  constructor(public navCtrl: NavController, public navParams: NavParams, private config: ConfigProvider) {
+    // this.chosenFilter=config.getFilter();
+    config.getFilter().then((data) => {
+      this.chosenFilter = data;
+    });
+    this.allowedFilters = config.getAllowedFilters();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConfigPage');
   }
 
+  
+   persitConfig(){
+      this.config.setFilter(this.chosenFilter);
+    } 
 
-  persitTask(){
-    this.storage.set("allowedFilters",JSON.stringify(this.allowedFilters))
-  }
 
 }

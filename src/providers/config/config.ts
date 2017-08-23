@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
+import { Storage } from '@ionic/storage';
+/*import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';*/
 
 /*
   Generated class for the ConfigProvider provider.
@@ -11,20 +12,36 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ConfigProvider {
 
-  private filter="all";
-  private allowedFilters=["all","done", "not done"]
-  constructor() {
-    
+  private filter;
+  private allowedFilters = ["all", "done", "not done"]
+
+  constructor(public storage: Storage) {
+     //récuperation de la configuration
+    storage.get("config.filter").then((data) => {
+     this.filter = data || "all"});
+ 
   }
-  getFilter(){
-    return this.filter;
+
+  getFilter() {
+    return new Promise((resolve, reject) => {
+      //récuperation de la configuration enregistrée sur le periphérique
+      this.storage.get("config.filter").then((data) => {
+        this.filter = data || "all";
+        resolve(data);
+      });
+
+    });
+    // return this.filter;
   }
-  getAllowedFilters(){
+
+
+  getAllowedFilters() {
     return this.allowedFilters;
   }
 
-  setFilter(filter){
-    this.filter=filter;
+  setFilter(filter) {
+    this.filter = filter;
+    this.storage.set("config.filter", filter);
   }
 
 }

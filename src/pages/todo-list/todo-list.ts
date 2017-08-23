@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events, ToastController } from 'ionic-angular';
 import { TodoFormpagePage } from "../todo-formpage/todo-formpage";
 import{Storage} from '@ionic/storage';
+import { ConfigProvider } from "../../providers/config/config";
 
 /**
  * Generated class for the TodoListPage page.
@@ -27,14 +28,21 @@ export class TodoListPage {
   
 
   constructor(public navCtrl: NavController, private toastCtrl:ToastController, public navParams: NavParams,
-               public events: Events,public storage:Storage) {
+               public events: Events,public storage:Storage, public config:ConfigProvider) {
+
+  //Definition de filter en fonction du provider
+  config.getFilter().then((data)=>{
+    this.filter=data;
+  })
+//  this.filter=config.getFilter
+
 //recuperation de la liste des todos
     storage.get("todos").then((data)=>{
       if(data){
         data=JSON.parse(data);
         this.todos=data;
       }
-    })
+    });
     //mise a jour d'une tache
     events.subscribe("task.update",(data)=>{
       data=JSON.parse(data);
@@ -64,7 +72,7 @@ export class TodoListPage {
       task:data
     }
 
-    console.log(params);
+    
     this.navCtrl.push(TodoFormpagePage, params)
   }
 
