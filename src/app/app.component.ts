@@ -6,7 +6,8 @@ import { TodoListPage } from "../pages/todo-list/todo-list";
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-import { ConfigPage } from "../pages/config/config";
+import { ConfigPage } from "../pages/config/config";   
+import { RendomUserListPage } from "../pages/rendom-user-list/rendom-user-list";
 
 
 
@@ -28,7 +29,8 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
       {title:'To do', component:TodoListPage},
-      {title:'Paramétrage', component: ConfigPage}
+      {title:'Paramétrage', component: ConfigPage},
+      {title:"Liste d'utilisateurs ", component: RendomUserListPage}
 
     ];
 

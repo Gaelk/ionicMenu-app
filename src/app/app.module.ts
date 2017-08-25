@@ -13,7 +13,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
 import { ConfigProvider } from '../providers/config/config';
 import { ConfigPage } from "../pages/config/config";
-
+import {Camera, CameraOptions} from'@ionic-native/camera';
+import { RendomUserListPage } from "../pages/rendom-user-list/rendom-user-list";
+import { HttpModule } from "@angular/http";
+import { HelloComponent } from "../components/hello/hello";
 @NgModule({
   declarations: [
     MyApp,
@@ -21,12 +24,17 @@ import { ConfigPage } from "../pages/config/config";
     ListPage,
     TodoListPage,
    TodoFormpagePage,
-    ConfigPage
+    ConfigPage,
+    RendomUserListPage,
+    HelloComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    HttpModule
+    
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -35,13 +43,15 @@ import { ConfigPage } from "../pages/config/config";
     ListPage,
     TodoListPage,
    TodoFormpagePage,
-   ConfigPage
+   ConfigPage,
+   RendomUserListPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ConfigProvider,
+    Camera
    
   ]
 })

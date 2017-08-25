@@ -63,9 +63,14 @@ export class TodoListPage {
 
   goToForm(data, pos){
     if (! data){
-      data={title:null,
-      done:false
+      data={
+      title:"",
+      done:false,
+     
       }
+    }
+    if(! data.hasOwnProperty("imageData")){
+      data.imageData=null;
     }
     let params={
       index:pos,

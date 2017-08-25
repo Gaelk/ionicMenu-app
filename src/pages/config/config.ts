@@ -31,10 +31,10 @@ export class ConfigPage {
     console.log('ionViewDidLoad ConfigPage');
   }
 
-  
-   persitConfig(){
-      this.config.setFilter(this.chosenFilter);
-    } 
+
+  persitConfig() {
+    this.config.setFilter(this.chosenFilter);
+  }
 
 
 }

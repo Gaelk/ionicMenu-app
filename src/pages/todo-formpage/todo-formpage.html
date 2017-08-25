@@ -23,5 +23,15 @@
     <ion-item>
       <button ion-button block (click)="saveTask()">valider</button>
     </ion-item>
+
+    <ion-item>
+      <button ion-button (click)="takePicture()"> prendre Photo</button>
+    </ion-item>
+    <ion-item *ngIf="task.imageData">
+      <ion-img src="data:image/jpeg;base64 ,{{task.imageData}}"></ion-img>
+    </ion-item>
+
+    <button ion-button block (click)="saveTask()">Valider</button>
+
   </ion-list>
 </ion-content>
